@@ -11,11 +11,11 @@
 
 <nav class="navbar navbar-inverse">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="{{ URL::to('') }}">Home</a>
+		<a class="navbar-brand" href="{{ URL :: route('home')}}">Home</a>
 	</div>
 	<ul class="nav navbar-nav">
-		<li><a href="{{ URL::to('airports') }}">Airports</a></li>
-		<li><a href="{{ URL::to('airports/create') }}">Add a new Airport</a>
+		<li><a href="airports">Airports</a></li>
+		<li><a href="reserve">Reservations</a>
 	</ul>
 </nav>
 
@@ -26,9 +26,7 @@
 	<div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
 
-
-  <button type="button" class="btn btn-default" style="margin: 10px; float: right;" >Add a new Airport</button>
-
+  <a class="btn btn-info" style="margin: 10px; float: right;" href="{{ URL::to('airports/create') }}">Add a new Airport</a>
 <table class="table table-striped table-bordered">
 	<thead>
 		<tr>
