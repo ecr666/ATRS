@@ -2,7 +2,7 @@
 
 @section('content')
 	Please enter details of your journey to reserve flights.
-	<form action="{{URL ::route('flight-reserve')}}" method='post'>
+	<form action="{{URL ::route('flight-reserve-post')}}" method='post'>
 		<div class="field">
 			From:<input type="text" name="from">
 		</div>
@@ -16,7 +16,7 @@
 		<div class="field">
 			Returning:<input type="date" name="returning">
 		</div>
-			 <a class="btn btn-info" style="margin: 10px; float: left;" href="{{ URL::to('reserve/routes') }}">Find Flights</a>
+			 <!--<a class="btn btn-info" style="margin: 10px; float: left;" href="{{ URL::to('reserve/routes') }}">Find Flights</a>-->
 
 		
 	<input type="submit" value="Find flights">
