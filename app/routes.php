@@ -44,11 +44,11 @@ Route::post('/details/personal', array(
 });
 //create account GET
 
-Route::get('/flight/reserve', array(
+Route::get('/reserve', array(
 	'as' => 'flight-reserve',
 	'uses' =>'ReserveController@getCreate'
 	));
-Route::get('/details/personal', array(
+Route::get('/reserve/personal', array(
 	'as' => 'details-personal',
 	'uses' =>'PersonalDetailController@getCreate'
 	));

@@ -4,6 +4,7 @@
 <html>
 <head>
 <title>Show Airport</title>
+<link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 	<!--<link rel="stylesheet" href="css/bootstrap.css">-->
 

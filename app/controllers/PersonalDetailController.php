@@ -3,7 +3,7 @@ class PersonalDetailController extends BaseController{
 
 	public function getCreate(){
 
-		return View::make('layout.personal_details');
+		return View::make('reservations.personal_details');
 	}
 	public function postCreate(){
 
