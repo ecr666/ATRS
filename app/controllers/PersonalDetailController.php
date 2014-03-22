@@ -3,8 +3,10 @@ class PersonalDetailController extends BaseController{
 
 	public function getCreate(){
 
-		return View::make('reservations.personal_details');
+		$fNum=Input::get('fNum');
+		return View::make('reservations.personal_details')->with('fNum', $fNum);
 	}
+
 	public function postCreate(){
 
 		$validator= Validator::make(Input::all(),array(

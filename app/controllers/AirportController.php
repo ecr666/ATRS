@@ -8,7 +8,7 @@ class AirportController extends BaseController {
 		// get all the nerds
 		$airports = airport::all();
 
-		// load the view and pass the nerds
+		// load the view and pass 
 		return View::make('airports2.index')
 			->with('airports', $airports);
 	}

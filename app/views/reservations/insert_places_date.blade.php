@@ -1,30 +1,41 @@
 @extends ('layout.main')
 
 @section('content')
-	Please enter details of your journey to reserve flights.
-	<form action="{{URL ::route('flight-reserve-post')}}" method='post'>
-		<div class="field">
-			From:<input type="text" name="from">
-		</div>
+	
+<div class="container">
+	<h3>Please enter details of your journey to reserve flights.</h3>
 
-		<div class="field">
-			To:<input type="text" name="to">
-		</div>
-		<div class="field">
-			Departing:<input type="date" name="departing">
-		</div>
-		<div class="field">
-			Class( B or E):<input type="date" name="class">
-		</div>
-		<div class="field">
-			No. of Seats:<input type="date" name="seats">
-		</div>
-			 <!--<a class="btn btn-info" style="margin: 10px; float: left;" href="{{ URL::to('reserve/routes') }}">Find Flights</a>-->
+	{{ Form::open(array('url' => 'flight/reserve')) }}
+	<div class="form-group">
+		{{ Form::label('from', 'From :') }}
+		{{ Form::text('from', Input::old('from'), array('class' => 'form-control')) }}
+	</div>
 
-		
-	<input type="submit" value="Find flights">
-	{{Form::token()}}
-	</form>
+	<div class="form-group">
+		{{ Form::label('to', 'To :') }}
+		{{ Form::text('to', Input::old('to'), array('class' => 'form-control')) }}
+	</div>
+
+	<div class="form-group">
+		{{ Form::label('departing', 'Departing Date:') }}
+		{{ Form::text('departing', Input::old('departing'), array('class' => 'form-control')) }}
+	</div>
+	<div class="form-group">
+		{{ Form::label('class', 'Class :') }}
+		{{ Form::select('class', array(
+        'business'       => 'Business',
+        'economy'     => 'Economy'
+    ), 'economy') }}
+		<!--{{ Form::text('class', Input::old('class'), array('class' => 'form-control')) }}-->
+	</div>
+
+	<div class="form-group">
+		{{ Form::label('seats', 'Number of Seats :') }}
+		{{ Form::text('seats', Input::old('seats'), array('class' => 'form-control')) }}
+	</div>
+    {{ Form::submit('Find Flights') }}
+	{{ Form::close() }}
+</div>
 
 
 @stop

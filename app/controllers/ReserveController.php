@@ -23,7 +23,13 @@ class ReserveController extends BaseController{
 				->withErrors($validator);
 		} else {
 			
-			$flights = DB::table('flight_specific')->select('ID', 'flight_date','businessClassPrice','economyClassPrice','businessClassCapacity','economyClassCapacity')->get();
+			$flights = DB::table('flight_specific')
+						->join('Departure_flight_airport', 'flight_specific.ID', '=', 'Departure_flight_airport.ID')
+						->join('Arrival_flight_airport', 'flight_specific.ID', '=', 'Arrival_flight_airport.ID')
+						->where('Departure_flight_airport.Airport_ID','=',Input::get('from'))
+						->where('Arrival_flight_airport.Airport_ID','=',Input::get('to'))
+						->select('flight_specific.ID', 'flight_specific.flight_date','flight_specific.businessClassPrice','flight_specific.economyClassPrice','flight_specific.businessClassCapacity','flight_specific.economyClassCapacity')->get();
+	
 			return View::make('reservations.availableRoutes')
 			->with('flights', $flights);
 
@@ -31,4 +37,6 @@ class ReserveController extends BaseController{
 		}
 		
 	}
+
+
 }
