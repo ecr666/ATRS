@@ -14,7 +14,10 @@
 			Departing:<input type="date" name="departing">
 		</div>
 		<div class="field">
-			Returning:<input type="date" name="returning">
+			Class( B or E):<input type="date" name="class">
+		</div>
+		<div class="field">
+			No. of Seats:<input type="date" name="seats">
 		</div>
 			 <!--<a class="btn btn-info" style="margin: 10px; float: left;" href="{{ URL::to('reserve/routes') }}">Find Flights</a>-->
 
@@ -22,5 +25,6 @@
 	<input type="submit" value="Find flights">
 	{{Form::token()}}
 	</form>
-	
+
+
 @stop
