@@ -13,24 +13,35 @@ class AddAirports extends Migration {
 	public function up()
 	{
 		
+		//airports
 		DB::table('airports')->insert(array(
-				'AirportName'=>'Katunayaka',
+				'AirportName'=>'CMB',
 				'City'=>'Colombo',
 				'State'=>'Srilanka'
 
 			));
 		DB::table('airports')->insert(array(
-				'AirportName'=>'Heethru',
+				'AirportName'=>'JFK',
+				'City'=>'NewYork',
+				'State'=>'USA'
+
+			));
+		DB::table('airports')->insert(array(
+				'AirportName'=>'SIN',
+				'City'=>'Singapore',
+				'State'=>'Singapore'
+
+			));
+		DB::table('airports')->insert(array(
+				'AirportName'=>'LHR',
 				'City'=>'London',
 				'State'=>'UK'
 
 			));
-		DB::table('airports')->insert(array(
-				'AirportName'=>'Fuji',
-				'City'=>'Tokiyo',
-				'State'=>'Japan'
 
-			));
+
+		//flights
+
 	}
 
 	/**
@@ -41,9 +52,11 @@ class AddAirports extends Migration {
 	public function down()
 	{
 		
-		DB::table('airports')->where('AirportName','=','Katunayaka')->delete();
-		DB::table('airports')->where('AirportName','=','Heethru')->delete();
-		DB::table('airports')->where('AirportName','=','Fuji')->delete();
+		DB::table('airports')->where('AirportName','=','CMB')->delete();
+		DB::table('airports')->where('AirportName','=','JFK')->delete();
+		DB::table('airports')->where('AirportName','=','SIN')->delete();
+		DB::table('airports')->where('AirportName','=','LHR')->delete();
+
 	}
 
 }

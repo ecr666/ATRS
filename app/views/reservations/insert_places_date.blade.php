@@ -22,4 +22,5 @@
 	<input type="submit" value="Find flights">
 	{{Form::token()}}
 	</form>
+	
 @stop
