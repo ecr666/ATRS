@@ -18,10 +18,9 @@ public function sendMail($customer,$ID,$time,$airportDep,$airportAri){
 		return Redirect::to('delayedFlights/create');
 }
 public function sendMaildetails($ID){
-	echo $ID;
-
+	
 	//Config::set('database.fetch', PDO::FETCH_ASSOC);
-	$delayFlightID='F1451L';
+	$delayFlightID=$ID;
 	$customer=DB::table('reservations')
 			->join('flight_specific',function($join){
 				$join->on('reservations.flight_specificID','=','flight_specific.ID')
@@ -30,7 +29,7 @@ public function sendMaildetails($ID){
 	   	 	//->where('reservations.flight_date','=','flight_specific.flight_date')			
 			->join('users','users.ID','=','reservations.CustomerID')	
 			->select('email','lastname')
-			->where('flight_specificID','=',$delayFlightID)
+			->where('flight_specific.ID','=',$delayFlightID)//or reservations.flight_specificID
 			->distinct()
 			;//->get() ;
 
@@ -43,6 +42,7 @@ public function sendMaildetails($ID){
 			->join('Flight','flight.ID','=','Departure_flight_airport.ID')
 			->join('Airports','Airport.ID','=','Departure_flight_airport.Airport_ID')
 			->select('AirportName' )
+			->where('flight.ID','=',$delayFlightID)//
 			->distinct()
 			->get();
 
@@ -50,6 +50,7 @@ public function sendMaildetails($ID){
 			->join('Flight','flight.ID','=','Arrival_flight_airport.ID')
 			->join('Airports','Airport.ID','=','Arrival_flight_airport.Airport_ID')
 			->select('AirportName' )
+			->where('flight.ID','=',$delayFlightID)//
 			->distinct()
 			->get();
 
