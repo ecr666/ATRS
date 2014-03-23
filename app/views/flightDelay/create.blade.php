@@ -1,8 +1,7 @@
-
-@extends ('layout.main')
+@extends('layout.main')
 
 @section('content')
-<h1>Add an Airport</h1>
+<h1>Add Flight Details</h1>
 
 <!-- if there are creation errors, they will show here -->
 {{ HTML::ul($errors->all()) }}

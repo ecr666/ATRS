@@ -26,6 +26,7 @@ Route::get('/', array(
 
 Route::resource('/airports', 'AirportController');
 Route::resource('/delayedFlights', 'FlightDelayController');
+Route::get('/notify', 'NotificationController@sendMaildetails');
 
 
 Route::group( array('before'=> 'guest'),function(){
