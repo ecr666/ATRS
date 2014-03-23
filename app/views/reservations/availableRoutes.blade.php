@@ -31,6 +31,7 @@
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
+            <th scope="Row">Select</th>
             <td>Filght ID</td>
             <td>Date</td>
             <td>Price (B.Class)</td>
@@ -42,6 +43,9 @@
     <tbody>
     @foreach($flights as $key => $value)
         <tr>
+            <th scope="col">                          
+                <input name="UserSelected" id="userSelected_2" type="radio" value="3">        
+            </th>
             <td>{{ $value->ID }}</td>
             <td>{{ $value->flight_date }}</td>
             <td>{{ $value->businessClassPrice }}</td>
@@ -54,6 +58,11 @@
 </table>
 
 </div>
+<script>
+    $('#tableSelect tr').click(function() {
+    $(this).find('th input:radio').prop('checked', true);
+})
+</script>
 
 <div class="container">
     {{ Form::open(array('url' => 'details/personal')) }}
@@ -61,8 +70,82 @@
             {{ Form::label('fNum', 'Select your flight Number :') }}
             {{ Form::text('fNum', Input::old('fNum'), array('class' => 'form-control')) }}
         </div>
-        {{ Form::submit('Select') }}
+        <div class="form-group">
+            {{ Form::label('fDate', 'Select the prefered date (dd-mm-yy):') }}
+            {{ Form::text('fDate', Input::old('fDate'), array('class' => 'form-control')) }}
+        </div>
+    {{ Form::submit('Select') }}
     {{ Form::close() }}
+</div>
+
+
+
+<!--all in one-->
+<div class="container">
+    {{ Form::open(array('url' => 'flight/reserve/completed')) }}
+    <h4>Flight Details</h4>
+        <div class="form-group">
+            {{ Form::label('fNum', 'Select your flight Number :') }}
+            {{ Form::text('fNum', Input::old('fNum'), array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group">
+            {{ Form::label('fDate', 'Select the prefered date (dd-mm-yy):') }}
+            {{ Form::text('fDate', Input::old('fDate'), array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group">
+        {{ Form::label('fClass', 'Class :') }}
+        {{ Form::select('fClass', array(
+        'business'       => 'Business',
+        'economy'     => 'Economy'
+    ), 'economy') }}
+        <!--{{ Form::text('class', Input::old('class'), array('class' => 'form-control')) }}-->
+    </div>
+        <br><h4>Personal Details</h4>
+        <div class="form-group">
+            {{ Form::label('lName', 'Last Name :') }}
+            {{ Form::text('lName', Input::old('lName'), array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group">
+            {{ Form::label('fName', 'First Name:') }}
+            {{ Form::text('fName', Input::old('fName'), array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group">
+            {{ Form::label('inis', 'Initials :') }}
+            {{ Form::text('inis', Input::old('inis'), array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group">
+            {{ Form::label('email', 'Email :') }}
+            {{ Form::text('email', Input::old('email'), array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group">
+            {{ Form::label('tel', 'Telephone Number :') }}
+            {{ Form::text('tel', Input::old('tel'), array('class' => 'form-control')) }}
+        </div>
+        <br><h4>Payment Details</h4>
+        <div class="form-group">
+        {{ Form::label('pMethod', 'Payment Method :') }}
+        {{ Form::select('pMethod', array(
+        'cCard'       => 'Credit Card'
+        ), 'cCard') }}
+
+        <!--{{ Form::text('class', Input::old('class'), array('class' => 'form-control')) }}-->
+        </div>
+        <div class="form-group">
+        {{ Form::label('cType', 'Credit Card Type :') }}
+        {{ Form::select('cCard', array(
+        'visa'       => 'VISA',
+        'master'       => 'MASTER',
+        ), 'visa') }}
+
+        <!--{{ Form::text('class', Input::old('class'), array('class' => 'form-control')) }}-->
+        </div>
+        <div class="form-group">
+            {{ Form::label('cNum', 'Credit Card Number :') }}
+            {{ Form::text('cNum', Input::old('cNum'), array('class' => 'form-control')) }}
+        </div>
+    {{ Form::submit('Submit') }}
+    {{ Form::close() }}
+    <br><br>
 </div>
 
 </body>

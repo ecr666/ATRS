@@ -3,10 +3,44 @@ class PersonalDetailController extends BaseController{
 
 	public function getCreate(){
 
-		$fNum=Input::get('fNum');
-		return View::make('reservations.personal_details')->with('fNum', $fNum);
+		$fData=array(
+				$fNum 	=Input::get('fNum'),
+				$fDate = Input::get('fDate')
+				//'fNum' 	=>Input::get('fNum'),
+				//'fDate' => Input::get('fDate')
+				);
+		//$fNum="abc";
+		//Session::flash('fNum', $fNum);     
+ 		//Redirect::to('/reserve/personal');
+		return View::make('reservations.personal_details')->with('fData', Input::get('fNum'));
 	}
+	public function postComplete(){
 
+		$validator= Validator::make(Input::all(),array(
+			'fNum'	=>'required',
+			'fDate'	=>'required',
+			'fClass'	=>'required',
+
+			'lName' =>'required',
+			'fName' =>'required',
+			'inis' =>'required',
+			'email' =>'required',
+			'tel'  =>'required',
+	/*		'pMethod' =>'required',
+			'cCard' =>'required',
+			'cNum' =>'required'			*/	
+			));
+//print_r(Input::all());
+		if($validator->fails()){
+			return Redirect::route('details-personal')
+			->withErrors($validator)
+			->withInput();
+
+		}
+		Session::flash('message', 'Successfully updated the airport!');
+		return Redirect::route('home')
+				->with('global','Your Reservation is Successful. Email is sent');
+	}
 	public function postCreate(){
 
 		$validator= Validator::make(Input::all(),array(
@@ -56,5 +90,6 @@ class PersonalDetailController extends BaseController{
 			}
 
 		}
+
 		
 	}

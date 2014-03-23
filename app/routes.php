@@ -41,9 +41,12 @@ Route::post('/details/personal', array(
 	'as' => 'details-personal-post',
 	'uses' =>'PersonalDetailController@postCreate'
 	));
+Route::post('/flight/reserve/completed', array(
+	'as' => 'flights-reserve-completed-post',
+	'uses' =>'PersonalDetailController@postComplete'
+	));
 });
 //create account GET
-
 Route::get('/reserve', array(
 	'as' => 'flight-reserve',
 	'uses' =>'ReserveController@getCreate'
@@ -51,6 +54,10 @@ Route::get('/reserve', array(
 Route::get('/reserve/personal', array(
 	'as' => 'details-personal',
 	'uses' =>'PersonalDetailController@getCreate'
+	));
+Route::get('/flight/reserve/completed', array(
+	'as' => 'flights-reserve-completed',
+	'uses' =>'PersonalDetailController@getComplete'
 	));
 }	);
 

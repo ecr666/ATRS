@@ -19,11 +19,10 @@
 		<li><a href="reserve">Reservations</a>
 	</ul>
 </nav>
-
-
-
-
 </div>
+@if (Session::has('message'))
+    <div class="alert alert-info">{{ Session::get('message') }}</div>
+@endif
     <div class="container">    
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
