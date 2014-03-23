@@ -80,7 +80,7 @@ class PersonalDetailController extends BaseController{
 			$temp4->paid_date 			= "24032014";
 			$temp4->save();
 
-		Session::flash('message', 'Successfully updated the airport!');
+		Session::flash('message', 'Your reservation added successfully!');
 		return Redirect::route('home')
 				->with('global','Your Reservation is Successful. Email is sent');
 
