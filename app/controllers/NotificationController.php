@@ -13,11 +13,13 @@ public function sendMail($customer){
 
 			$message-> to('madavidemel@gmail.com','Madhawi')->subject('Flight update details');
 		});
-*/}
-public function sendMaildetails(){
+
+		*/return Redirect::to('delayedFlights/create');
+}
+public function sendMaildetails($ID){
+	echo $ID;
 
 	//Config::set('database.fetch', PDO::FETCH_ASSOC);
-	//change flightID to flight_specificID
 	$delayFlightID='F1451L';
 	$customer=DB::table('reservations')
 			->join('flight_specific',function($join){
@@ -30,7 +32,7 @@ public function sendMaildetails(){
 			->where('flight_specificID','=',$delayFlightID)
 			->distinct()
 			;//->get() ;
-
+			
 	$time=DB::table('flight_delay')
 			->select('scheduled_time','new_time')
 			->where('ID','=',$delayFlightID);

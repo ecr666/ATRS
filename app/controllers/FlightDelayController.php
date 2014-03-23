@@ -49,13 +49,18 @@ class FlightDelayController extends BaseController {
 		} else {
 			// store
 			$temp = new flight_delay;
-			$temp->ID 			    = Input::get('ID');
-			$temp->scheduled_time   		= Input::get('scheduled_time');
+			$temp->ID 			    	= Input::get('ID');
+			$ID  ->$temp;
+			$temp->scheduled_time   	= Input::get('scheduled_time');
 			$temp->new_time 			= Input::get('new_time');
 			$temp->save();
 
+
 			// redirect
 			Session::flash('message', 'Successfully Added details');
+			
+			$request = Request::create('/notify', 'GET', $ID);
+			return Route::dispatch($request)->getContent();
 
 			return Redirect::to('delayedFlights');
 		}
@@ -70,11 +75,11 @@ class FlightDelayController extends BaseController {
 	public function show($id)
 	{
 			// get the nerd
-			$airport = airports::find($id);
+			$flight_delay = flight_delay::find($id);
 
 			// show the view and pass the nerd to it
-			return View::make('airpors.show')
-			->with('airport', $airports);
+			return View::make('flight_delay.show')
+			->with('flight_delay', $flight_delay);
 	}
 
 	/**
@@ -86,11 +91,11 @@ class FlightDelayController extends BaseController {
 	public function edit($id)
 	{
 			// get the nerd
-			$airport = airports::find($id);
+			$flight_delay = flight_delay::find($id);
 
 			// show the edit form and pass the nerd
-			return View::make('airpors.edit')
-			->with('airport', $airports);
+			return View::make('flight_delay.edit')
+			->with('flight_delay', $flight_delay);
 	}
 
 	/**
@@ -104,28 +109,28 @@ class FlightDelayController extends BaseController {
 		// validate
 		// read more on validation at http://laravel.com/docs/validation
 		$rules = array(
-			'AirportName'       => 'required',
-			'City'      		=> 'required',
-			'Country' 			=> 'required'
+			'ID'     		    => 'required',
+			'scheduled_time'  	=> 'required',
+			'new_time' 			=> 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
 		// process the login
 		if ($validator->fails()) {
-			return Redirect::to('airports/' . $id . '/edit')
+			return Redirect::to('delayedFlights/' . $id . '/edit')
 				->withErrors($validator)
 				->withInput(Input::except('password'));
 		} else {
 			// store
 			$temp = airports::find($id);
-			$temp->AirportName       = Input::get('AirportName');
-			$temp->City      = Input::get('City');
-			$temp->State = Input::get('Country');
+			$temp->ID       		= Input::get('ID');
+			$temp->scheduled_time   = Input::get('scheduled_time');
+			$temp->new_time 		= Input::get('new_time');
 			$temp->save();
 
 			// redirect
-			Session::flash('message', 'Successfully updated the airport!');
-			return Redirect::to('airports');
+			Session::flash('message', 'Successfully updated!');
+			return Redirect::to('delayedFlights');
 		}
 	}
 
