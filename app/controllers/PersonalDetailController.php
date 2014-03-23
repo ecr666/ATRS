@@ -68,7 +68,7 @@ class PersonalDetailController extends BaseController{
 			$temp3->flight_date      		= Input::get('fDate');
 			$temp3->CustomerID 			= $cusID;
 			$temp3->Class     		= Input::get('fClass');
-			$temp3->SeatID 			= Input::get('cNum');
+			$temp3->SeatID 			= $cusID;
 			$temp3->PaymentID     		= $payID;
 			$temp3->save();
 

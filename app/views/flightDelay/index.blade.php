@@ -1,4 +1,4 @@
-@extends ('layout.main')
+@extends('layout.main')
 
 @section('content')
 <h2>Delayed Flights</h2>
@@ -8,26 +8,26 @@
 	<div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
 
-  <a class="btn btn-info" style="margin: 10px; float: right;" href="{{ URL::to('add/delayedFlight') }}">Update table</a>
+  <a class="btn btn-info" style="margin: 10px; float: right;" href="{{ URL::to('delayedFlights/create	') }}">Add Details</a>
 <table class="table table-striped table-bordered">
 	<thead>
 		<tr>
-			<td>Flight Number</td>
-			<td>Flight Date</td>
-			<td>Scheduled Time</td>
-			<td>New Time</td>
-			<td>Notified Users</td>
+			<td>FlightNumber</td>
+			<td>FlightDate</td>
+			<td>ScheduledTime</td>
+			<td>NewTime</td>
+			<td>NotifiedUsers</td>
 			
 		</tr>
 	</thead>
 	<tbody>
 	@foreach($flight_delay as $key => $value)
 		<tr>
-			<td>{{ $value->Flight Number }}</td>
-			<td>{{ $value->Flight Date }}</td>
-			<td>{{ $value->Scheduled Time}}</td>
-			<td>{{ $value->New Time }}</td>
-			<td>{{ $value->Notified Users }}</td>
+			<td>{{ $value->FlightNumber }}</td>
+			<td>{{ $value->FlightDate }}</td>
+			<td>{{ $value->ScheduledTime}}</td>
+			<td>{{ $value->NewTime }}</td>
+			<td>{{ $value->NotifiedUsers }}</td>
 
 			<!-- we will also add show, edit, and delete buttons -->
 			<td>
@@ -51,6 +51,5 @@
 	@endforeach
 	</tbody>
 </table>
-
-
 @stop
+

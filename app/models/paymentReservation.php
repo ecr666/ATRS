@@ -2,5 +2,5 @@
 
 class paymentReservation extends Eloquent{
 	 public $timestamps = false;
-	public $table = 'paymentReservation';
+	public $table = 'payment_reservation';
 }

@@ -4,9 +4,10 @@ class FlightDelayController extends BaseController {
 
 	public $restful = true;
 
+
 	public function index(){
 		// get all the nerds
-		$flight_delay = flight_delay::all();
+		$flight_delay = DB::table('flight_delay')->get();
 
 		// load the view and pass the nerds
 		return View::make('flightDelay.index')
@@ -17,6 +18,8 @@ class FlightDelayController extends BaseController {
 	 *
 	 * @return Response
 	 */
+
+
 	public function create()
 	{
 		return View::make('flightDelay.create');

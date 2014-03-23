@@ -1,9 +1,10 @@
 @extends ('layout.main')
 
 @section('content')
-	
+<div class="well" style="background-color: rgb(170, 212, 255);">
+	<h3 style="color: rgb(51, 51, 51);">Enter Journy Details</h3>
+</div>
 <div class="container">
-	<h3>Please enter details of your journey to reserve flights.</h3>
 
 	{{ Form::open(array('url' => 'flight/reserve')) }}
 	<div class="form-group">

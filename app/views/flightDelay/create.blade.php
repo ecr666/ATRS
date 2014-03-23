@@ -1,5 +1,4 @@
-
-@extends ('layout.main')
+@extends('layout.main')
 
 @section('content')
 <h1>Add an Airport</h1>

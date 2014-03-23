@@ -80,7 +80,7 @@
             {{ Form::text('fNum', Input::old('fNum'), array('class' => 'form-control')) }}
         </div>
         <div class="form-group">
-            {{ Form::label('fDate', 'Select the prefered date (dd-mm-yy):') }}
+            {{ Form::label('fDate', 'Select the prefered date (yyyy-mm-dd):') }}
             {{ Form::text('fDate', Input::old('fDate'), array('class' => 'form-control')) }}
         </div>
         <div class="form-group">
