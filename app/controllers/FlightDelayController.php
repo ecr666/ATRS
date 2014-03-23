@@ -130,7 +130,10 @@ class FlightDelayController extends BaseController {
 
 			// redirect
 			Session::flash('message', 'Successfully updated!');
-			return Redirect::to('delayedFlights');
+			$request = Request::create('/notify', 'GET', $ID);
+			return Route::dispatch($request)->getContent();
+
+			//return Redirect::to('delayedFlights');
 		}
 	}
 

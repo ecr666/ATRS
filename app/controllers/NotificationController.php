@@ -2,19 +2,20 @@
 //notify when table is updated
 class NotificationController extends BaseController{
 
-public function sendMail($customer){
+public function sendMail($customer,$ID,$time,$airportDep,$airportAri){
 
 	foreach ($customer as $key => $value) {
 			
 			$email= $value->email;
-			}
+			
 /*
-	Mail::send('emails.notification',array('name'=> 'Tour flight number'),function($message){
+	Mail::send('emails.notification',array('lastname'=> ,flightID'=>$ID,'flightDateTime'=>$time,'newFlightDateTime'=>$time,'departureAirport'=>$airportDep,'arrivalAirport'=>$airportAri),function($message){
 
-			$message-> to('madavidemel@gmail.com','Madhawi')->subject('Flight update details');
-		});
-
-		*/return Redirect::to('delayedFlights/create');
+			$message-> to($email,$lastname)->subject('Flight update details');
+		});}
+		*/
+}
+		return Redirect::to('delayedFlights/create');
 }
 public function sendMaildetails($ID){
 	echo $ID;
@@ -28,14 +29,32 @@ public function sendMaildetails($ID){
 			//->select('CustomerID')
 	   	 	//->where('reservations.flight_date','=','flight_specific.flight_date')			
 			->join('users','users.ID','=','reservations.CustomerID')	
-			->select('email')
+			->select('email','lastname')
 			->where('flight_specificID','=',$delayFlightID)
 			->distinct()
 			;//->get() ;
-			
+
 	$time=DB::table('flight_delay')
 			->select('scheduled_time','new_time')
-			->where('ID','=',$delayFlightID);
+			->where('ID','=',$delayFlightID)
+			->distinct();
+
+	$airportDep=DB::table('Departure_flight_airport')
+			->join('Flight','flight.ID','=','Departure_flight_airport.ID')
+			->join('Airports','Airport.ID','=','Departure_flight_airport.Airport_ID')
+			->select('AirportName' )
+			->distinct()
+			->get();
+
+	$airportAri=DB::table('Arrival_flight_airport')
+			->join('Flight','flight.ID','=','Arrival_flight_airport.ID')
+			->join('Airports','Airport.ID','=','Arrival_flight_airport.Airport_ID')
+			->select('AirportName' )
+			->distinct()
+			->get();
+
+	 $this->sendMail($customer,$ID,$time,$airportDep,$airportAri);
+	
 /*			
 foreach ($customer as $key => $value) {
 	$emails=json_encode($value);
@@ -51,7 +70,6 @@ $emailArrya=$emails->toArray();
 {
     return json_decode(json_encode($val), true)
 }, $customer);*/
-	 $this->sendMail($customer);
 	/*DB::table('users')
         ->join('contacts', function($join)
         {	
