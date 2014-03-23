@@ -13,7 +13,7 @@
 
 <nav class="navbar navbar-inverse">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="{{ URL :: route('home')}}" }}"> Home</a>
+		<a class="navbar-brand" href="{{ URL :: route('home')}}" }}> Home</a>
 	</div>
 	<ul class="nav navbar-nav">
 		<li><a href="{{ URL::to('airports') }}">Airports Home</a></li>

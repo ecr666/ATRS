@@ -25,6 +25,8 @@ Route::get('/', array(
 //Route::get('/airports', array('uses' => 'airports@get_index' ));
 
 Route::resource('/airports', 'AirportController');
+Route::resource('/delayedFlights', 'FlightDelayController');
+
 
 Route::group( array('before'=> 'guest'),function(){
 

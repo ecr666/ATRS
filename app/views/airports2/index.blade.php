@@ -16,7 +16,7 @@
 	</div>
 	<ul class="nav navbar-nav">
 		<li><a href="airports">Airports</a></li>
-		<li><a href="reserve">Reservations</a>
+		<li><a href="{{ URL::to('flight/reserve') }}">Reservations</a>
 	</ul>
 </nav>
 
