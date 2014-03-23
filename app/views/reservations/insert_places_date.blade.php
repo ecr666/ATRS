@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="form-group">
-		{{ Form::label('departing', 'Departing Date:') }}
+		{{ Form::label('departing', 'Departing Date (yyyy-mm-dd):') }}
 		{{ Form::text('departing', Input::old('departing'), array('class' => 'form-control')) }}
 	</div>
 	<div class="form-group">

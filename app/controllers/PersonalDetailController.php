@@ -22,17 +22,17 @@ class PersonalDetailController extends BaseController{
 
 		$validator= Validator::make(Input::all(),array(
 			 'fNum'	=>'required',
-			'fDate'	=>'required',
+			'fDate'	=>'required|date',
 			'fClass'	=>'required',
 
 			'lName' =>'required',
 			'fName' =>'required',
 			'inis' =>'required',
-			'email' =>'required',
+			'email' =>'required|email',
 			'tel'  =>'required',
 		    'pMethod' =>'required',
 			'cCard' =>'required',
-			'cNum' =>'required'			
+			'cNum' =>'required|Numeric'			
 			));
 //print_r(Input::all());
 		if($validator->fails()){/*

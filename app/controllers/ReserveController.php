@@ -10,9 +10,9 @@ class ReserveController extends BaseController{
 		$rules = array(
 			'from'      	 	=> 'required',
 			'to'      			=> 'required',
-			'departing'      	=> 'required',
+			'departing'      	=> 'required|date',
 			'class' 			=> 'required',
-			'seats' 			=> 'required'
+			'seats' 			=> 'required|Numeric'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 		
@@ -28,6 +28,7 @@ class ReserveController extends BaseController{
 						->join('Arrival_flight_airport', 'flight_specific.ID', '=', 'Arrival_flight_airport.ID')
 						->where('Departure_flight_airport.Airport_ID','=',Input::get('from'))
 						->where('Arrival_flight_airport.Airport_ID','=',Input::get('to'))
+						->where('flight_specific.flight_date','>=',Input::get('departing'))
 						->select('flight_specific.ID', 'flight_specific.flight_date','flight_specific.businessClassPrice','flight_specific.economyClassPrice','flight_specific.businessClassCapacity','flight_specific.economyClassCapacity')->get();
 	
 			return View::make('reservations.availableRoutes')
