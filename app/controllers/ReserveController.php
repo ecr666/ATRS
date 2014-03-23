@@ -32,8 +32,6 @@ class ReserveController extends BaseController{
 	
 			return View::make('reservations.availableRoutes')
 			->with('flights', $flights);
-
-			
 		}
 		
 	}

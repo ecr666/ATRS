@@ -30,9 +30,9 @@ class PersonalDetailController extends BaseController{
 			'inis' =>'required',
 			'email' =>'required',
 			'tel'  =>'required',
-	/*		'pMethod' =>'required',
+		    'pMethod' =>'required',
 			'cCard' =>'required',
-			'cNum' =>'required'			*/	
+			'cNum' =>'required'			
 			));
 //print_r(Input::all());
 		if($validator->fails()){/*
@@ -51,9 +51,19 @@ class PersonalDetailController extends BaseController{
 			$temp->Email 			= Input::get('email');
 			$temp->save();
 
+			$revID = DB::table('flight_specific')->max('ID');
+			//echo ($count);
 
+			$temp2 = new  Payments;
+			$temp2->PaymentMethod      = Input::get('pMethod');
+			$temp2->CreditCardType      		= Input::get('cCard');
+			$temp2->CreditCardNum 			= Input::get('cNum');
+			$temp2->amount     		= Input::get('888888');
+			$temp2->save();
 
+			$payID = DB::table('Payments')->max('ID');
 
+			
 
 
 
