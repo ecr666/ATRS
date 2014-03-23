@@ -8,7 +8,7 @@
 	<div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
 
-  <a class="btn btn-info" style="margin: 10px; float: right;" href="{{ URL::to('add/delayedFlight') }}">Update table</a>
+  <a class="btn btn-info" style="margin: 10px; float: right;" href="{{ URL::to('delayedFlights/create	') }}">Add Details</a>
 <table class="table table-striped table-bordered">
 	<thead>
 		<tr>

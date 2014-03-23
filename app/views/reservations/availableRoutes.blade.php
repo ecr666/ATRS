@@ -20,8 +20,12 @@
 	</ul>
 </nav>
 
+<div class="well" style="background-color: rgb(170, 212, 255);">
+        <h3 style="color: rgb(51, 51, 51);">Available Flights</h3>
+ </div>
+
 <div class="container">
-<h1>Available Flights</h1>
+
 
 <!-- will be used to show any messages -->
 @if (Session::has('message'))
@@ -64,23 +68,10 @@
 })
 </script>
 
-<div class="container">
-    {{ Form::open(array('url' => 'details/personal')) }}
-        <div class="form-group">
-            {{ Form::label('fNum', 'Select your flight Number :') }}
-            {{ Form::text('fNum', Input::old('fNum'), array('class' => 'form-control')) }}
-        </div>
-        <div class="form-group">
-            {{ Form::label('fDate', 'Select the prefered date (dd-mm-yy):') }}
-            {{ Form::text('fDate', Input::old('fDate'), array('class' => 'form-control')) }}
-        </div>
-    {{ Form::submit('Select') }}
-    {{ Form::close() }}
-</div>
-
-
-
 <!--all in one-->
+<div class ="well">
+    <h3>Please Fill This Form</h3>
+</div>
 <div class="container">
     {{ Form::open(array('url' => 'flight/reserve/completed')) }}
     <h4>Flight Details</h4>
@@ -89,7 +80,7 @@
             {{ Form::text('fNum', Input::old('fNum'), array('class' => 'form-control')) }}
         </div>
         <div class="form-group">
-            {{ Form::label('fDate', 'Select the prefered date (dd-mm-yy):') }}
+            {{ Form::label('fDate', 'Select the prefered date (yyyy-mm-dd):') }}
             {{ Form::text('fDate', Input::old('fDate'), array('class' => 'form-control')) }}
         </div>
         <div class="form-group">
