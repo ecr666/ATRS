@@ -21,9 +21,9 @@ class PersonalDetailController extends BaseController{
 	public function postComplete(){
 
 		$validator= Validator::make(Input::all(),array(
-			/*'fNum'	=>'required',
+			 'fNum'	=>'required',
 			'fDate'	=>'required',
-			'fClass'	=>'required',*/
+			'fClass'	=>'required',
 
 			'lName' =>'required',
 			'fName' =>'required',
@@ -51,7 +51,7 @@ class PersonalDetailController extends BaseController{
 			$temp->Email 			= Input::get('email');
 			$temp->save();
 
-			$revID = DB::table('flight_specific')->max('ID');
+			$cusID = DB::table('users')->max('ID');
 			//echo ($count);
 
 			$temp2 = new  Payments;
@@ -63,10 +63,22 @@ class PersonalDetailController extends BaseController{
 
 			$payID = DB::table('Payments')->max('ID');
 
-			
+			$temp3 = new  Reservations;
+			$temp3->flight_specificID      = Input::get('fNum');
+			$temp3->flight_date      		= Input::get('fDate');
+			$temp3->CustomerID 			= $cusID;
+			$temp3->Class     		= Input::get('fClass');
+			$temp3->SeatID 			= Input::get('cNum');
+			$temp3->PaymentID     		= $payID;
+			$temp3->save();
 
+			$revID = DB::table('Reservations')->max('ID');
 
-
+			$temp4 = new  paymentReservation;
+			$temp4->reservation_ID      = $revID;
+			$temp4->payment_ID      		= $payID;
+			$temp4->paid_date 			= "24032014";
+			$temp4->save();
 
 		Session::flash('message', 'Successfully updated the airport!');
 		return Redirect::route('home')
